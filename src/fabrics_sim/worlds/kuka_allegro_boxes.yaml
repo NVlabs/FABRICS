@@ -1,0 +1,79 @@
+# Copyright (c) 2022, NVIDIA CORPORATION & AFFILIATES. All rights reserved.                          
+                                                                                                     
+# NVIDIA CORPORATION, its affiliates and licensors retain all intellectual                           
+# property and proprietary rights in and to this material, related                                   
+# documentation and any modifications thereto. Any use, reproduction,                                
+# disclosure or distribution of this material and related documentation                              
+# without an express license agreement from NVIDIA CORPORATION or                                    
+# its affiliates is strictly prohibited.
+
+table:
+  env_index: all
+  type: box
+  scaling: 0.725 1.16 0.03
+  transform: -0.5725 0.088 0.235 0. 0. 0. 1.
+
+# NOTE: taking out camera1 and camera3 for now because we've physically
+# removed those cameras from the scene. This opens up the work volume
+# for the robot.
+#camera1:
+#  env_index: all
+#  type: box
+#  scaling: 0.36 0.30 0.85
+#  transform: -0.82 0.45 0.425 0. 0. 0. 1.
+
+camera2:
+  env_index: all
+  type: box
+  scaling: 0.50 0.45 0.6
+  transform: -0.75 -0.425 1.15 0. 0. 0. 1.
+
+#camera3:
+#  env_index: all
+#  type: box
+#  scaling: 0.30 0.30 0.80
+#  transform: -0.25 -0.35 0.4 0. 0. 0. 1.
+
+left_wall:
+  env_index: all
+  type: box
+  scaling: 1.7 .03 1.1
+  transform: -0.45 -.45 .75 0. 0. 0. 1.
+
+right_wall:
+  env_index: all
+  type: box
+  scaling: 1.7 .03 1.1
+  transform: -0.45 .60 .75 0. 0. 0. 1.
+
+back_wall:
+  env_index: all
+  type: box
+  scaling: .03 1.1 1.1
+  transform: 0.4 0.075 .75 0. 0. 0. 1.
+
+#front_wall:
+#  env_index: all
+#  type: box
+#  scaling: .03 1. 1.
+#  transform: -1.2 0. .75 0. 0. 0. 1.
+
+top_wall:
+  env_index: all
+  type: box
+  scaling: 1.7 1.1 .03
+  transform: -0.45 0.08 1.30 0. 0. 0. 1.
+
+floor:
+  env_index: all
+  type: box
+  scaling: 1.7 1.1 .03
+  transform: -0.45 0.075 .2 0. 0. 0. 1.
+
+#robot_base:
+#  env_index: all
+#  type: sphere
+#  scaling: 0.12 0.12 0.12
+#  transform: 0. 0.0 0.34 0. 0. 0. 1.
+
+

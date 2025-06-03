@@ -1,0 +1,72 @@
+# Copyright (c) 2021, NVIDIA CORPORATION & AFFILIATES.  All rights reserved.
+#
+# NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+# property and proprietary rights in and to this material, related
+# documentation and any modifications thereto. Any use, reproduction,
+# disclosure or distribution of this material and related documentation
+# without an express license agreement from NVIDIA CORPORATION or
+# its affiliates is strictly prohibited.
+
+#######################################################
+# KEEP ITEMS IN ALPHABETICAL ORDER WITHIN THEIR GROUP #
+#######################################################
+
+# Temporary and binary files
+*~
+*.cfg
+*.log
+*.pot
+*.py[cod]
+*.orig
+*.so
+*.swo
+*.swp
+*/.ipynb_checkpoints/*
+.DS_Store
+.cache/*
+.thumbs/*
+__pycache__/*
+
+# Project files
+.ropeproject
+.project
+.pydevproject
+.settings
+.idea
+.vscode
+tags
+
+# Package files
+*.egg
+*.eggs/
+.installed.cfg
+*.egg-info
+
+# Unittest and coverage
+htmlcov/*
+.coverage
+.coverage.*
+.tox
+junit*.xml
+coverage.xml
+.pytest_cache/
+
+# Build and docs folder/files
+_build/*
+_coverage/*
+build/*
+dist/*
+sdist/*
+docs/_api/*
+docs/_rst/*
+docs/_build/*
+cover/*
+MANIFEST
+
+# Per-project virtualenvs
+.venv*/
+.conda*/
+venv*/*
+
+# Jupyter files
+*checkpoint.ipynb

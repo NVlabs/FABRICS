@@ -1,0 +1,115 @@
+# Copyright (c) 2022, NVIDIA CORPORATION & AFFILIATES. All rights reserved.                          
+                                                                                                     
+# NVIDIA CORPORATION, its affiliates and licensors retain all intellectual                           
+# property and proprietary rights in and to this material, related                                   
+# documentation and any modifications thereto. Any use, reproduction,                                
+# disclosure or distribution of this material and related documentation                              
+# without an express license agreement from NVIDIA CORPORATION or                                    
+# its affiliates is strictly prohibited.
+
+fabric_params:
+    cspace_attractor:
+        min_isotropic_mass: 1.
+        max_isotropic_mass: 1.
+        mass_sharpness: 20.0
+        mass_switch_offset: 1.
+        conical_sharpness: 20.
+        conical_gain: 1.
+    joint_limit_repulsion:
+        velocity_gate: True
+        breakaway_distance: 0.0
+        breakaway_velocity: 0.
+        soft_relu_gain: 8.
+        metric_scalar: 0.02
+        metric_exploder_offset: 0.1
+        max_metric: 100.
+        damping_gain: 8.
+    hand_attractor:
+        min_isotropic_mass: 8.
+        max_isotropic_mass: 8.
+        mass_sharpness: 20.
+        mass_switch_offset: 0.5
+        conical_sharpness: 40.
+        conical_gain: 50.
+        damping: 50.
+        damping_sharpness: 10.
+        damping_radius: 0.2
+    palm_attractor:
+        min_isotropic_mass: 1.
+        max_isotropic_mass: 1.
+        mass_sharpness: 10.
+        mass_switch_offset: 0.5
+        conical_sharpness: 40. # 10. for 12 dim pose attractor
+        conical_gain: 50.
+        damping: 50. #25. # 50.
+        damping_sharpness: 10. # 20. for the 12 dim pose attractor
+        damping_radius: .2 #1.32 # 1. for 12 dim pose attractor
+    body_repulsion:
+      max_depth: 2.
+      min_depth: 0.01
+      engage_depth: 0.5
+      breakaway_depth: 0.0
+      breakaway_velocity: 0.
+      metric_scalar: 1.
+      velocity_gate: True
+      velocity_gate_sharpness: 1000.
+      velocity_gate_offset: 0.002
+      rescaled_min_dist: .01
+      forcing_metric_scalar: .01
+      geom_metric_scalar: .01
+      constant_accel: 1.
+      constant_accel_geom: 5.
+      damping_gain: 0. #25. #30.
+      collision_sphere_frames: 
+          ["iiwa7_link_2", "iiwa7_link_2_sphere2","iiwa7_link_2_sphere3",
+           "iiwa7_link_4", "iiwa7_link_4_sphere2","iiwa7_link_4_sphere3",
+           "iiwa7_link_6_sphere2",
+           "iiwa7_link_7", "allegro_mount", "palm_link_sphere2",
+           "index_link_1", "index_link_1_sphere2", "index_link_2",
+           "index_link_3", "index_link_3_sphere2",
+           "middle_link_1", "middle_link_1_sphere2", "middle_link_2",
+           "middle_link_3", "middle_link_3_sphere2",
+           "ring_link_1", "ring_link_1_sphere2", "ring_link_2",
+           "ring_link_3", "ring_link_3_sphere2",
+           "thumb_link_1", "thumb_link_2", "thumb_link_2_sphere2",
+           "thumb_link_3", "thumb_link_3_sphere2", "thumb_link_3_sphere3"]
+      collision_sphere_radii: [0.12, 0.1, 0.1,
+                               0.125, 0.1, 0.1,
+                               0.1,
+                               0.075, 0.05, 0.075,
+                               0.02, 0.02, 0.02, 0.02, 0.02,
+                               0.02, 0.02, 0.02, 0.02, 0.02,
+                               0.02, 0.02, 0.02, 0.02, 0.02,
+                               0.02, 0.02, 0.02, 0.02, 0.02, 0.02]
+      collision_sphere_pairs: []
+      collision_link_prefix_pairs: [["palm_link", "iiwa7_link_2"],
+                                    ["index_link_1", "iiwa7_link_2"],
+                                    ["index_link_2", "iiwa7_link_2"],
+                                    ["index_link_3", "iiwa7_link_2"],
+                                    ["middle_link_1", "iiwa7_link_2"],
+                                    ["middle_link_2", "iiwa7_link_2"],
+                                    ["middle_link_3", "iiwa7_link_2"],
+                                    ["ring_link_1", "iiwa7_link_2"],
+                                    ["ring_link_2", "iiwa7_link_2"],
+                                    ["ring_link_3", "iiwa7_link_2"],
+                                    ["thumb_link_1", "iiwa7_link_2"],
+                                    ["thumb_link_2", "iiwa7_link_2"],
+                                    ["thumb_link_3", "iiwa7_link_2"]]
+    cspace_damping:
+      gain: 10.
+    speed_control:
+      active: False
+      energy_target: 10.
+      damping: 100.
+    joint_limits:
+      active: True
+      acceleration: [7.5, 7.5, 10., 10., 10., 20., 20.,
+                     22.5, 22.5, 22.5, 22.5,
+                     22.5, 22.5, 22.5, 22.5,
+                     22.5, 22.5, 22.5, 22.5,
+                     22.5, 22.5, 22.5, 22.5]
+      jerk: [3750., 3750., 5000., 5000., 5000., 10000., 10000.,
+             2250., 2250., 2250., 2250.,
+             2250., 2250., 2250., 2250.,
+             2250., 2250., 2250., 2250.,
+             2250., 2250., 2250., 2250.]

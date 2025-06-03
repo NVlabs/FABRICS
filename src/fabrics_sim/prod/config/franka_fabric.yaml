@@ -1,0 +1,128 @@
+api_version: 0.1  # Unstable API
+
+robot:
+    default_config: [0.00, -1.3, 0.00, -2.87, 0.00, 2.00, 0.75, .0, .0]
+    end_effector: right_gripper
+
+    # These limits are taken from the Franka spec sheet (except for the finger
+    # limits, which are made up). Note: commenting out these limits will remove
+    # them from the controller. One can supply, accel_limits alone, jerk_limits
+    # alone, both, or neither.
+    accel_limits: [15., 7.5, 10., 12.5, 15., 20., 20., 10., 10.]
+    jerk_limits: [7500., 3750., 5000., 6250., 7500., 10000., 10000., 1000., 1000.]
+
+    # To really see the affect of acceleration and jerk limits, try these
+    # values.
+    #accel_limits: [3., 3., 3., 3., 3., 3., 3., 3., 3.]
+    #jerk_limits: [300., 300., 300., 300., 300., 300., 300., 300., 300.]
+
+world:
+    obstacles:
+        # External obstacles. The randomize_std_dev field is optional. When it's
+        # present, the center is used as a mean and each environment's obstacle
+        # locations are chosen from a multivariate normal
+        # 
+        #     N(center, randomize_std_dev I)
+        # 
+        # where I is the identity matrix. Only visible obstacles can be
+        # randomized. If one visible obstacle has a randomize_std_dev field,
+        # then it's expected that all visible obstacles have that field.
+        - center: [.25, 0., .65]
+          radius: .15
+          randomize_std_dev: .1
+          visible: true
+        - center: [.25, 0., .65]
+          radius: .1
+          randomize_std_dev: .1
+          visible: true
+
+        # Self collision representation
+        - center: [.0, .0, .3]
+          radius: .1
+          visible: false
+        - center: [.0, .0, .15]
+          radius: .1
+          visible: false
+
+fabrics:
+    integrator_type: displacement
+
+    end_effector_control:
+        suppress_position: false
+        position_params:
+            p_gain: 20.
+            d_gain: 25.
+            err_normalizer_robustness_eps: .05
+            goal_region_length_scale: .1
+            near_metric: 10.
+            boost_length_scale: .03
+            boost_scalar: 75.
+            weight: 30.
+        suppress_orientation: false
+        orientation_params:
+            p_gain: 20.
+            d_gain: 15.
+            weight: 50.
+    
+    cspace_control:
+        suppress: false
+        params:
+            p_gain: 40.
+            d_gain: 45.
+            weight: 10.
+            # Matches the external force experiment: Baseline inertia mass 100.,
+            # then force gains of 800 and 500 for position and damping terms,
+            # respectively.
+            #p_gain: 8.
+            #d_gain: 5.
+            #weight: 100
+
+    joint_limit_control:
+        suppress: false
+        params:
+            force_x_length_scale: .025
+            p_gain: 80.
+            d_gain: 20.
+            metric_x_length_scale: .1
+            weight: 2400.
+
+    obs_avoidance_control:
+        suppress: false
+        params:
+            - {name: toward_obs_norm_eps, default: .001, range: [0., .01]}
+            - {name: damp_gain, default: 20., range: [0., 100.]}
+            - {name: damp_weight, default: 10., range: [0., 200.]}
+            - {name: push_proximity_sigma, default: .035, range: [.001, .3]}
+            - {name: push_gain, default: 80., range: [0., 200.]}
+            - {name: push_weight, default: 300., range: [0., 1000.]}
+            - {name: directional_damp_proximity_sigma, default: .1, range: [.001, .5]}
+            - {name: directional_damp_gain, default: 20., range: [0., 100.]}
+            - {name: directional_damp_weight, default: 300., range: [0., 1000.]}
+        #params_constraint:
+        #    normalization_robustness_eps: .001
+        #    velocity_gate_length_scale: .001
+        #    position_length_scale: .01
+        #    damping_length_scale: .1
+        #    position_gain: 80.
+        #    damping_gain: 50.
+        #    baseline_damping_gain: 10.
+        #    metric_toward_obs_weight: 3.
+        #    metric_identity_weight: .01
+        #    metric_length_scale: .1
+        #    weight: 600.
+        task_space_descriptors:
+            - [panda_link1, panda_link3, 0.75, .15]
+            - [panda_link1, panda_link3, 1.0, .1]
+            - [panda_link3, panda_link5, .25, .1]
+            - [panda_link3, panda_link5, .50, .1]
+            - [panda_link3, panda_link5, .75, .1]
+            - [panda_link3, panda_link5, 1.0, .1]
+            - [panda_link5, right_gripper, .25, .075]
+            - [panda_link5, right_gripper, .50, .075]
+            - [panda_link5, right_gripper, .75, .075]
+            - [panda_link5, right_gripper, 1.0, .075]
+            - [panda_face_back_left, panda_face_left, 0.5, .075]
+            - [panda_face_back_right, panda_face_right, 0.5, .075]
+            - [panda_leftfinger, panda_leftfingertip, 0.75, .05]
+            - [panda_rightfinger, panda_rightfingertip, 0.75, .05]
+

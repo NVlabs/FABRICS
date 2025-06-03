@@ -1,0 +1,15 @@
+# Copyright (c) 2021, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+#
+# NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+# property and proprietary rights in and to this material, related
+# documentation and any modifications thereto. Any use, reproduction,
+# disclosure or distribution of this material and related documentation
+# without an express license agreement from NVIDIA CORPORATION or
+# its affiliates is strictly prohibited.
+
+# Inherit from the following YAML file:
+# https://gitlab-master.nvidia.com/srl/gitlab_ci_yamls/-/blob/main/gitlab_ci_python_project.yaml
+include:
+  - project: "srl/gitlab_ci_yamls"
+    file: "gitlab_ci_python_project.yaml"
+    ref: main
