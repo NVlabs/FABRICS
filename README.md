@@ -52,15 +52,12 @@ One can update dependences in deps.txt file, remove pyproject.toml and poetry.lo
     poetry init --name "fabrics_sim" --no-interaction
     xargs poetry add < deps.txt
 
-Add the following under authors in pyproject.toml
-    ```bash
+Add the following after ```authors``` in pyproject.toml
+
     packages = [ 
     { include = "fabrics_sim", from = "src" }
     ]
 
-    ```
-
 Install the project
-    ```bash
+
     poetry install
-    ```
