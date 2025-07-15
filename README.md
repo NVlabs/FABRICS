@@ -13,10 +13,11 @@ Fabrics are nonlinear, autonomous, second order differential equations that are 
 
 3. [Create Isaac Sim Conda environment](https://docs.omniverse.nvidia.com/isaacsim/latest/installation/install_python.html#advanced-running-with-anaconda) where `environment.yaml` is within the top level Isaac Sim install directory, e.g., `/home/<user>/.local/share/ov/pkg/isaac-sim-*`. The dependencies within `environment.yml` can also be installed manually via pip within your Isaac Sim conda environment.
 
-4. Pip install fabrics (optionally in editable mode with `-e` flag)
+4. Install poetry and install project
 
-       cd <fabrics_dir>
-       pip install .
+      curl -sSL https://install.python-poetry.org | python3 -
+      cd <fabrics_dir>
+      poetry install
 
 5. Patch `urdfpy` dependency `networkx` to work with python 3.10
 
@@ -41,3 +42,12 @@ Once installed, you should be able to run the example scripts in the example dir
 Kuka-Allegro (DextrAH) fabric:
 
     python <fabrics_dir>/examples/kuka_allegro_pose_fabric_example.py --batch_size=10 --render --cuda_graph
+
+## Notes
+One can update dependences in deps.txt file, remove pyproject.toml and poetry.lock files, and regenerate them
+
+    cd <fabrics_dir>
+    rm pyproject.toml poetry.lock
+    poetry init --no-interaction
+    xargs poetry add < deps.txt
+    poetry install
