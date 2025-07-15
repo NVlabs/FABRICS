@@ -1,62 +1,21 @@
-# Copyright (c) 2021, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
-#
-# NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
-# property and proprietary rights in and to this material, related
-# documentation and any modifications thereto. Any use, reproduction,
-# disclosure or distribution of this material and related documentation
-# without an express license agreement from NVIDIA CORPORATION or
-# its affiliates is strictly prohibited.
+[project]
+name = "fabrics"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Karl Van Wyk",email = "kvanwyk@nvidia.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "torch (>=2.4.0)",
+    "warp-lang (>=1.5.0)",
+    "pyyaml (>=6.0.2,<7.0.0)",
+    "urdfpy (>=0.0.22,<0.0.23)",
+    "numpy (>=1.23.5,<2.0.0)"
+]
+
+
 [build-system]
-requires = ["setuptools>=45", "setuptools_scm>=6.2", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[tool.black]
-line-length = 100
-extend-exclude = "deprecated/"
-experimental-string-processing = true
-
-# See the `setuptools_scm` documentation for the description of the schemes used below.
-# https://pypi.org/project/setuptools-scm/
-# NOTE: If these values are updated, they need to be also updated in `srl/__init__.py`.
-[tool.setuptools_scm]
-version_scheme = "no-guess-dev"
-local_scheme = "dirty-tag"
-
-[tool.isort]
-# Multi line output mode 3 is used to conform with Black. See
-# https://github.com/PyCQA/isort#multi-line-output-modes
-multi_line_output = 3
-profile = "black"
-import_heading_stdlib = "Standard Library"
-import_heading_thirdparty = "Third Party"
-import_heading_firstparty = "SRL"
-import_heading_localfolder = "Local Folder"
-line_length = 100
-
-[tool.pytest.ini_options]
-norecursedirs = [".git", ".venv", "deprecated", "dist"]
-python_files = ["*_test.py"]
-
-[tool.coverage.report]
-# NOTE: Single-quoted strings are required in TOML for regular expressions
-exclude_lines = [
-	"pragma: no cover", # Need to re-enable the standard no cover match
-	'^\s*pass\s*$',  # Skip any pass lines
-]
-
-[tool.mypy]
-disallow_untyped_defs = true
-no_implicit_optional = true
-show_error_codes = true
-warn_unused_ignores = true
-exclude = [
-	"venv",
-]
-
-[[tool.mypy.overrides]]
-module = [
-	"importlib.metadata",
-	"setuptools",
-	"setuptools_scm",
-]
-ignore_missing_imports = true
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
