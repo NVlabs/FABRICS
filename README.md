@@ -14,10 +14,11 @@ Fabrics are nonlinear, autonomous, second order differential equations that are 
 3. [Create Isaac Sim Conda environment](https://docs.omniverse.nvidia.com/isaacsim/latest/installation/install_python.html#advanced-running-with-anaconda) where `environment.yaml` is within the top level Isaac Sim install directory, e.g., `/home/<user>/.local/share/ov/pkg/isaac-sim-*`. The dependencies within `environment.yml` can also be installed manually via pip within your Isaac Sim conda environment.
 
 4. Install poetry and install project
-
-      curl -sSL https://install.python-poetry.org | python3 -
-      cd <fabrics_dir>
-      poetry install
+    ```bash
+    curl -sSL https://install.python-poetry.org | python3 -
+    cd <fabrics_dir>
+    poetry install
+    ```
 
 5. Patch `urdfpy` dependency `networkx` to work with python 3.10
 
@@ -48,6 +49,6 @@ One can update dependences in deps.txt file, remove pyproject.toml and poetry.lo
 
     cd <fabrics_dir>
     rm pyproject.toml poetry.lock
-    poetry init --no-interaction
+    poetry init --name "fabrics_sim" --no-interaction
     xargs poetry add < deps.txt
     poetry install
