@@ -5,13 +5,8 @@ Fabrics are nonlinear, autonomous, second order differential equations that are 
 ![](./docs/img/gifs/fabrics_collage.gif)
 
 ## Installation
-1. [Install](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html) Isaac Sim, Isaac Lab following the local conda install route.
+1. [Install](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html) Isaac Sim following the local conda install route.
 
-**Note**: After you clone the Isaac Lab repository and before installation, checkout the tag `v2.2.1` before installation (can also work with `v2.0.2` with minor code changes):
-```bash
-        cd <IsaacLab>
-        git checkout v2.2.1
-```
 2. Install Fabrics within your new conda env
 ```bash
         curl -sSL https://install.python-poetry.org | python3 - --version 1.8.3
