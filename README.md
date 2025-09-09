@@ -22,6 +22,11 @@ Fabrics are nonlinear, autonomous, second order differential equations that are 
        chmod +x urdfpy_patch.sh
        ./urdfpy_patch.sh
 ```
+4. Ensure high enough `GLIBCXX_` can be found
+```bash
+        conda install -c conda-forge libstdcxx-ng
+        conda install -c conda-forge libgcc-ng=12 libstdcxx-ng=12
+```
 ## Examples
 Once installed, you should be able to run the example script in the example directory, e.g.:
 
