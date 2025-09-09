@@ -5,6 +5,8 @@ Fabrics are nonlinear, autonomous, second order differential equations that are 
 ![](./docs/img/gifs/fabrics_collage.gif)
 
 ## Installation
+**Note**: This project will download and install additional third-party open source software projects. Review the license terms of these open source projects before use.
+
 1. [Install](https://isaac-sim.github.io/IsaacLab/main/source/setup/installation/pip_installation.html) Isaac Sim following the local conda install route.
 
 2. Install Fabrics within your new conda env
